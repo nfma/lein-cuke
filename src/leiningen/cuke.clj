@@ -10,14 +10,17 @@
            (.setEnvironment {"GEM_PATH" "lib/gems"})))
         (.split options " ")))
 
+(def *exit-status* 0)
+
 (defn cuke
   "Run cucumber features"
   [project & args]
-  (eval-in-project
-   project
-   `(.run (org.jruby.Main.
-           (doto (new org.jruby.RubyInstanceConfig)
-             (.setEnvironment {"GEM_PATH" "lib/gems"})))
-          (into-array (map str ["lib/gems/bin/cucumber" ~@args])))
-   (fn [java]
-     (.setFork java false))))
+  (try (eval-in-project project
+    `(if-not (zero? (.getStatus (.run (org.jruby.Main.
+            (doto (new org.jruby.RubyInstanceConfig)
+              (.setEnvironment {"GEM_PATH" "lib/gems"})))
+          (into-array (map str ["lib/gems/bin/cucumber" ~@args])))))
+      (throw (Exception. "build failed!")))
+    (fn [java]
+      (.setFork java false)))
+    (catch Exception e (System/exit 1))))
