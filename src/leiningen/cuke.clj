@@ -20,7 +20,7 @@
             (doto (new org.jruby.RubyInstanceConfig)
               (.setEnvironment {"GEM_PATH" "lib/gems"})))
           (into-array (map str ["lib/gems/bin/cucumber" ~@args])))))
-      (throw (Exception. "build failed!")))
+      (throw (Exception. "Cucumber failed!")))
     (fn [java]
       (.setFork java false)))
     (catch Exception e (System/exit 1))))
