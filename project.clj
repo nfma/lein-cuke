@@ -1,4 +1,4 @@
-(defproject org.clojars.mjul/lein-cuke "0.3.3"
+(defproject org.clojars.mjul/lein-cuke "0.3.3-PATCH"
   :description "Cucumber runner for Leiningen (lein)"
   :dependencies [[leiningen "1.3.1"] 
                  [gherkin "2.2.4"]

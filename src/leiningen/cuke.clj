@@ -17,7 +17,7 @@
   [project & args]
   (try (eval-in-project project
     `(if-not (zero? (.getStatus (.run (org.jruby.Main.
-            (doto (new org.jruby.RubyInstanceConfig)
+            (doto (org.jruby.RubyInstanceConfig.)
               (.setEnvironment {"GEM_PATH" "lib/gems"})))
           (into-array (map str ["lib/gems/bin/cucumber" ~@args])))))
       (throw (Exception. "Cucumber failed!")))
