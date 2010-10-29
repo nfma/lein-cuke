@@ -9,14 +9,14 @@ projects refer to my
 
 ## Installation
 
-   Add something like `[org.clojars.mjul/lein-cuke "0.4.3-SNAPSHOT"]` to the `:dev-dependencies` block in your project.clj, like:
+   Add something like `[org.clojars.mjul/lein-cuke "1.0.0"]` to the `:dev-dependencies` block in your project.clj, like:
 
     (defproject pickles "0.0.1"
       :description "Vinegar + cucumber + time"
       :repositories [["clojars" "http://clojars.org/repo"]]
-      :dev-dependencies [[org.clojars.mjul/lein-cuke "0.4.3-SNAPSHOT"]])
+      :dev-dependencies [[org.clojars.mjul/lein-cuke "1.0.0"]])
 
-   Look [here](http://clojars.org/org.clojars.mjul/lein-cuke) for the latest.
+   Look [here](http://clojars.org/org.clojars.mjul/lein-cuke) for the latest version.
 
 ## Usage
 
