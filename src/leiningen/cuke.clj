@@ -3,10 +3,9 @@
          [leiningen.compile :only [eval-in-project]]))
 
 
-(defn jruby
-  [options]
+(defn jruby [options]
   (.run (org.jruby.Main.
-         (doto (new org.jruby.RubyInstanceConfig)
+         (doto (org.jruby.RubyInstanceConfig.)
            (.setEnvironment {"GEM_PATH" "lib/gems"})))
         (.split options " ")))
 
@@ -17,10 +16,11 @@
   [project & args]
   (try (eval-in-project project
     `(if-not (zero? (.getStatus (.run (org.jruby.Main.
-            (doto (org.jruby.RubyInstanceConfig.)
-              (.setEnvironment {"GEM_PATH" "lib/gems"})))
-          (into-array (map str ["lib/gems/bin/cucumber" ~@args])))))
-      (throw (Exception. "Cucumber failed!")))
+                                    (doto (org.jruby.RubyInstanceConfig.)
+                                      (.setEnvironment {"GEM_PATH" "lib/gems"})))
+                                  (into-array (map str ["lib/gems/bin/cucumber" ~@args])))))
+       (throw (Exception. "Cucumber failed!")))
     (fn [java]
       (.setFork java false)))
+    (System/exit 0)
     (catch Exception e (System/exit 1))))

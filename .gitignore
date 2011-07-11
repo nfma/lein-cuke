@@ -1,5 +1,6 @@
 Manifest.txt
 lib
 classes
+tags
 lein-cuke.jar
 pom.xml
